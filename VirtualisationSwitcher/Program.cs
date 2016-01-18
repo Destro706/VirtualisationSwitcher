@@ -44,6 +44,7 @@ namespace VirtualisationSwitcher {
 
             runCommandAsAdmin.FileName = "cmd.exe";
             runCommandAsAdmin.Arguments = "/c " + createBcdeditTxtFile;
+            runCommandAsAdmin.UseShellExecute = false;
             runCommandAsAdmin.CreateNoWindow = true;
             process.StartInfo = runCommandAsAdmin;
             process.Start();
@@ -59,12 +60,17 @@ namespace VirtualisationSwitcher {
 
             runCommandAsAdmin.FileName = "cmd.exe";
             runCommandAsAdmin.Arguments = "/c " + switchCommand;
+            runCommandAsAdmin.UseShellExecute = false;
             runCommandAsAdmin.CreateNoWindow = true;
             process.StartInfo = runCommandAsAdmin;
             process.Start();
             process.WaitForExit();
+
             MessageBox.Show(warning, caption, MessageBoxButtons.OK ,MessageBoxIcon.Warning);
-            Process.Start("shutdown.exe", "-r -t 0");
+            var restartWindowsCommand = new ProcessStartInfo("shutdown", "/s /t 0");
+            restartWindowsCommand.UseShellExecute = false;
+            restartWindowsCommand.CreateNoWindow = true;
+            Process.Start(restartWindowsCommand);
         }
 
         static void Main() {
