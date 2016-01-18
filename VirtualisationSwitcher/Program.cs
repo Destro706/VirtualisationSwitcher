@@ -67,7 +67,7 @@ namespace VirtualisationSwitcher {
             process.WaitForExit();
 
             MessageBox.Show(warning, caption, MessageBoxButtons.OK ,MessageBoxIcon.Warning);
-            var restartWindowsCommand = new ProcessStartInfo("shutdown", "/s /t 0");
+            var restartWindowsCommand = new ProcessStartInfo("shutdown", "/r /t 0");
             restartWindowsCommand.UseShellExecute = false;
             restartWindowsCommand.CreateNoWindow = true;
             Process.Start(restartWindowsCommand);
