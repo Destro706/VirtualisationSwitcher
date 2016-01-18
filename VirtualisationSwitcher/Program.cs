@@ -30,7 +30,7 @@ namespace VirtualisationSwitcher {
                 enabled = false;
             } else {
                 MessageBox.Show("Es ist ein Fehler aufgetreten, die Anwendung wird beendet!");
-                Application.Exit();
+                Environment.Exit(0);
             }
 
             return enabled;            
