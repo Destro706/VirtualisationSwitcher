@@ -50,45 +50,29 @@ namespace VirtualisationSwitcher {
             process.WaitForExit();
         }
 
-        private static void switchHyperV(bool isEnabled) {
+        private static void switchHyperV(string switchCommand) {
             string warning = "SPEICHERN SIE IHRE ARBEIT, DER PC WIRD NEU GESTARTET!";
             string caption = "Virtualisation Switcher";
+            
+            Process process = new Process();
+            ProcessStartInfo runCommandAsAdmin = new ProcessStartInfo();
 
-            string hyper_V_on = "bcdedit.exe /set hypervisorlaunchtype auto";
-            string hyper_V_off = "bcdedit.exe /set hypervisorlaunchtype off";
-
-            if (isEnabled == true) {
-                Process process = new Process();
-                ProcessStartInfo runCommandAsAdmin = new ProcessStartInfo();
-
-                runCommandAsAdmin.FileName = "cmd.exe";
-                runCommandAsAdmin.Arguments = "/c " + hyper_V_off;
-                runCommandAsAdmin.CreateNoWindow = true;
-                process.StartInfo = runCommandAsAdmin;
-                process.Start();
-                process.WaitForExit();
-                MessageBox.Show(warning, caption, MessageBoxButtons.OK ,MessageBoxIcon.Warning);
-                Process.Start("shutdown.exe", "-r -t 0");
-            } else {
-                Process process = new Process();
-                ProcessStartInfo runCommandAsAdmin = new ProcessStartInfo();
-
-                runCommandAsAdmin.FileName = "cmd.exe";
-                runCommandAsAdmin.Arguments = "/c " + hyper_V_on;
-                runCommandAsAdmin.CreateNoWindow = true;
-
-                process.StartInfo = runCommandAsAdmin;
-                process.Start();
-                process.WaitForExit();
-                MessageBox.Show(warning, caption, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                Process.Start("shutdown.exe", "-r -t 0");
-            }
-           
+            runCommandAsAdmin.FileName = "cmd.exe";
+            runCommandAsAdmin.Arguments = "/c " + switchCommand;
+            runCommandAsAdmin.CreateNoWindow = true;
+            process.StartInfo = runCommandAsAdmin;
+            process.Start();
+            process.WaitForExit();
+            MessageBox.Show(warning, caption, MessageBoxButtons.OK ,MessageBoxIcon.Warning);
+            Process.Start("shutdown.exe", "-r -t 0");
         }
 
         static void Main() {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+
+            string hyper_V_on = "bcdedit.exe /set hypervisorlaunchtype auto";
+            string hyper_V_off = "bcdedit.exe /set hypervisorlaunchtype off";
 
             string questionIfEnabled = "                    Hyper-V ist aktiviert!\n            Möchten Sie Hyper-V deaktivieren?\n                    (PC wird neu gestartet)";
             string questionIfDisabled = "                    Hyper-V ist deaktiviert!\n            Möchten Sie Hyper-V aktivieren?\n                    (PC wird neu gestartet)";
@@ -101,14 +85,14 @@ namespace VirtualisationSwitcher {
             if (hyperVenabled == true) {
                 var result = MessageBox.Show(questionIfEnabled, caption, MessageBoxButtons.YesNo);
                 if (result == DialogResult.Yes) {
-                    switchHyperV(true);
+                    switchHyperV(hyper_V_off);
                 } else if (result == DialogResult.No) {
                     Environment.Exit(0);
                 }
             } else {
                 var result = MessageBox.Show(questionIfDisabled, caption, MessageBoxButtons.YesNo);
                 if (result == DialogResult.Yes) {
-                    switchHyperV(false);
+                    switchHyperV(hyper_V_on);
                 } else if (result == DialogResult.No) {
                     Environment.Exit(0);
                 }
