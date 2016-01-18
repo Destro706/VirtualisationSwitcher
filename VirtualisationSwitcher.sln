@@ -5,6 +5,8 @@ VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VirtualisationSwitcher", "VirtualisationSwitcher\VirtualisationSwitcher.csproj", "{0A0B33C2-0D15-447E-A943-EB2E5661FF2B}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup", "Setup\Setup.vdproj", "{052BD562-4975-4D7B-8691-AB19BEC75BC9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{0A0B33C2-0D15-447E-A943-EB2E5661FF2B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0A0B33C2-0D15-447E-A943-EB2E5661FF2B}.Release|x64.ActiveCfg = Release|x64
 		{0A0B33C2-0D15-447E-A943-EB2E5661FF2B}.Release|x64.Build.0 = Release|x64
+		{052BD562-4975-4D7B-8691-AB19BEC75BC9}.Debug|Any CPU.ActiveCfg = Debug
+		{052BD562-4975-4D7B-8691-AB19BEC75BC9}.Debug|x64.ActiveCfg = Debug
+		{052BD562-4975-4D7B-8691-AB19BEC75BC9}.Release|Any CPU.ActiveCfg = Release
+		{052BD562-4975-4D7B-8691-AB19BEC75BC9}.Release|x64.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
