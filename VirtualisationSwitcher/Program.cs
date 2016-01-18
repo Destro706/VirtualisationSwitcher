@@ -67,7 +67,6 @@ namespace VirtualisationSwitcher {
                 process.StartInfo = runCommandAsAdmin;
                 process.Start();
                 process.WaitForExit();
-                createBcdeditTxt();
                 MessageBox.Show(warning, caption, MessageBoxButtons.OK ,MessageBoxIcon.Warning);
                 Process.Start("shutdown.exe", "-r -t 0");
             } else {
@@ -81,7 +80,6 @@ namespace VirtualisationSwitcher {
                 process.StartInfo = runCommandAsAdmin;
                 process.Start();
                 process.WaitForExit();
-                createBcdeditTxt();
                 MessageBox.Show(warning, caption, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 Process.Start("shutdown.exe", "-r -t 0");
             }
@@ -97,6 +95,7 @@ namespace VirtualisationSwitcher {
             
             string caption = "Virtualisation Switcher";
 
+            createBcdeditTxt();
             var hyperVenabled = isHyperVenabled();
 
             if (hyperVenabled == true) {
