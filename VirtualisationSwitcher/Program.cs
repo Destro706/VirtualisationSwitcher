@@ -65,6 +65,7 @@ namespace VirtualisationSwitcher {
             process.StartInfo = runCommandAsAdmin;
             process.Start();
             process.WaitForExit();
+            createBcdeditTxt();
 
             MessageBox.Show(warning, caption, MessageBoxButtons.OK ,MessageBoxIcon.Warning);
             var restartWindowsCommand = new ProcessStartInfo("shutdown", "/r /t 0");
